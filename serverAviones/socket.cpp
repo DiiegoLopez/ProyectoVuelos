@@ -84,7 +84,7 @@ void socket::onNewConnection()
     ConexionBBDD b;
     b.Conectar();
     QString vuelo= b.DevolverVuelos();
-    qDebug() << "Vuelo enviado";
+    qDebug() << "Vuelo enviado!";
 
     pSocket->sendTextMessage(QString(vuelo));
 
