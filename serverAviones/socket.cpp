@@ -5,6 +5,7 @@
 #include <iostream>
 #include <fstream>
 #include <QFile>
+#include <conexionbbdd.h>
 
 
 
@@ -80,11 +81,21 @@ void socket::onNewConnection()
     QWebSocket *pSocket = m_pWebSocketServer->nextPendingConnection();
 
     qDebug() << "Socket conectado:" << pSocket;
+    ConexionBBDD b;
+    b.Conectar();
+    QString vuelo= b.DevolverVuelos();
+    qDebug() << "Vuelo enviado";
 
-    connect(pSocket, &QWebSocket::textMessageReceived, this, &socket::processTextMessage);
+    pSocket->sendTextMessage(QString(vuelo));
+
+
+
     connect(pSocket, &QWebSocket::disconnected, this, &socket::socketDisconnected);
 
+
+
     m_clients << pSocket;
+
 }
 
 
@@ -92,7 +103,15 @@ void socket::processTextMessage(QString message)
 {
     QWebSocket *pClient = qobject_cast<QWebSocket *>(sender());
     qDebug() << "De:" << pClient << "Mensaje recibido:" << message;
+
+
+
+
+
+
 }
+
+
 
 
 void socket::socketDisconnected()

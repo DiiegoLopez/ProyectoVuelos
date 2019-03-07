@@ -37,7 +37,9 @@ QString ConexionBBDD::DevolverVuelos()
 {
     QSqlQuery qu;
     qu.setForwardOnly(true);
-    if (!qu.exec("SELECT * FROM public.vuelos"))return QString();
+    if (!qu.exec("SELECT idvuelo,nombrecompania,nombredestino,numeropuerta,horavuelo,informacionvuelo FROM public.vuelos join companias using (idcompania)join puertas using (idpuerta)join destinos using(iddestino);"))
+
+                 return QString();
 
       QJsonDocument  json;
       QJsonArray     recordsArray;

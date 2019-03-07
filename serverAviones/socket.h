@@ -24,11 +24,14 @@ private slots:
     void onNewConnection();
     void processTextMessage(QString message);
     void socketDisconnected();
+
     QString leerConf(QString archivo);
 private:
     QWebSocketServer *m_pWebSocketServer;
+
     QList<QWebSocket *> m_clients;
     bool m_debug;
+
 };
 
 #endif
