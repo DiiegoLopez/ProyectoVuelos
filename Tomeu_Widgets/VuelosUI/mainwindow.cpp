@@ -1,13 +1,21 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QMessageBox>
+#include <QtWebSockets>
 #include <QTcpSocket>
 
-MainWindow::MainWindow(QWidget *parent) :
+MainWindow::MainWindow(const QUrl &url, bool debug, QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow)
+    ui(new Ui::MainWindow),
+    m_url(url),
+    m_debug(debug)
 {
     ui->setupUi(this);
+    QTimer::singleShot(0,this,SLOT(run()));
+    run();
+    onConnected();
+
+
 }
 
 MainWindow::~MainWindow()
@@ -15,41 +23,17 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::Conectar(){
+void MainWindow::onConnected()
+{
+    if (m_debug)
+        connect(&m_webSocket, &QWebSocket::textMessageReceived,
+                this, &MainWindow::onTextMessageReceived);
+        m_webSocket.sendTextMessage("Hello, world!");
+}
 
-    QMessageBox *msgBox = new QMessageBox(this);
-
-    // Iniciar WebSocket
-
-    socket = new QTcpSocket(this);
-
-    // Poner IP y PUERTO
-    socket->connectToHost("localhost", 3347);
-
-    if(socket->waitForConnected(3000)){
-        msgBox->setText("Conectado");
-        msgBox->open();
-        socket->close();
-
-        // Enviar
-
-        /*socket->write("Esto es una prueba");
-        socket->waitForBytesWritten(1000);
-        socket->waitForReadyRead(3000);
-        msgBox->setText(socket->readAll());
-        socket->close();*/
-
-    } else {
-        msgBox->setText("No conectado");
-        msgBox->open();
-    }
-
-
-
-
-    // Recibir
-
-    // Cerrar
-
-
+void MainWindow::run(){
+    if (m_debug)
+        connect(&m_webSocket, &QWebSocket::connected, this, &MainWindow::onConnected);
+        connect(&m_webSocket, &QWebSocket::disconnected, this, &MainWindow::closed);
+        m_webSocket.open(QUrl(m_url));
 }

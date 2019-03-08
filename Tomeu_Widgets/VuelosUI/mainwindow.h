@@ -4,6 +4,8 @@
 #include <QMainWindow>
 #include <QTcpSocket>
 #include <QMessageBox>
+#include <QtWebSockets>
+
 
 namespace Ui {
 class MainWindow;
@@ -12,14 +14,23 @@ class MainWindow;
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
-
 public:
-    explicit MainWindow(QWidget *parent = 0);
+    explicit MainWindow(const QUrl &url, bool debug = false, QWidget *parent = nullptr);
     ~MainWindow();
-    void Conectar();
-    QTcpSocket *socket;
+    void run();
+Q_SIGNALS:
+    void closed();
+    void onTextMessageReceived();
+
+
+private Q_SLOTS:
+    void onConnected();
+
 
 private:
+    QWebSocket m_webSocket;
+    QUrl m_url;
+    bool m_debug;
     Ui::MainWindow *ui;
 };
 
