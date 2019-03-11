@@ -24,8 +24,8 @@ SET default_with_oids = false;
 --
 
 CREATE TABLE public.companias (
-    idcompania integer NOT NULL,
-    nombrecompania character varying(100) NOT NULL,
+    "idCompania" integer NOT NULL,
+    "nombreCompania" character varying(100) NOT NULL,
     "nombreLogoCompania" integer NOT NULL,
     "uuidLogoCompania" uuid NOT NULL
 );
@@ -52,7 +52,7 @@ ALTER TABLE public."companias_idCompania_seq" OWNER TO usuario;
 -- Name: companias_idCompania_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: usuario
 --
 
-ALTER SEQUENCE public."companias_idCompania_seq" OWNED BY public.companias.idcompania;
+ALTER SEQUENCE public."companias_idCompania_seq" OWNED BY public.companias."idCompania";
 
 
 --
@@ -82,8 +82,8 @@ ALTER SEQUENCE public."companias_nombreLogo_seq" OWNED BY public.companias."nomb
 --
 
 CREATE TABLE public.destinos (
-    iddestino integer NOT NULL,
-    nombredestino character varying(100) NOT NULL
+    "idDestino" integer NOT NULL,
+    "nombreDestino" character varying(100) NOT NULL
 );
 
 
@@ -108,7 +108,7 @@ ALTER TABLE public."destinos_idDestino_seq" OWNER TO usuario;
 -- Name: destinos_idDestino_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: usuario
 --
 
-ALTER SEQUENCE public."destinos_idDestino_seq" OWNED BY public.destinos.iddestino;
+ALTER SEQUENCE public."destinos_idDestino_seq" OWNED BY public.destinos."idDestino";
 
 
 --
@@ -171,9 +171,9 @@ ALTER TABLE public.estados_vuelos OWNER TO usuario;
 --
 
 CREATE TABLE public.puertas (
-    idpuerta integer NOT NULL,
-    letrapuerta character varying(100) NOT NULL,
-    numeropuerta integer NOT NULL
+    "idPuerta" integer NOT NULL,
+    "letraPuerta" character varying(100) NOT NULL,
+    "numeroPuerta" integer NOT NULL
 );
 
 
@@ -198,7 +198,7 @@ ALTER TABLE public."puertas_idPuerta_seq" OWNER TO usuario;
 -- Name: puertas_idPuerta_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: usuario
 --
 
-ALTER SEQUENCE public."puertas_idPuerta_seq" OWNED BY public.puertas.idpuerta;
+ALTER SEQUENCE public."puertas_idPuerta_seq" OWNED BY public.puertas."idPuerta";
 
 
 --
@@ -206,22 +206,22 @@ ALTER SEQUENCE public."puertas_idPuerta_seq" OWNED BY public.puertas.idpuerta;
 --
 
 CREATE TABLE public.vuelos (
-    idvuelo integer NOT NULL,
-    idcompania integer NOT NULL,
-    iddestino integer NOT NULL,
-    idpuerta integer NOT NULL,
-    horavuelo time(6) without time zone NOT NULL,
-    informacionvuelo character varying(100) NOT NULL
+    "idVuelo" integer NOT NULL,
+    "idCompania" integer NOT NULL,
+    "idDestino" integer NOT NULL,
+    "idPuerta" integer NOT NULL,
+    "horaVuelo" time(6) without time zone NOT NULL,
+    "informacionVuelo" character varying(100) NOT NULL
 );
 
 
 ALTER TABLE public.vuelos OWNER TO usuario;
 
 --
--- Name: COLUMN vuelos.informacionvuelo; Type: COMMENT; Schema: public; Owner: usuario
+-- Name: COLUMN vuelos."informacionVuelo"; Type: COMMENT; Schema: public; Owner: usuario
 --
 
-COMMENT ON COLUMN public.vuelos.informacionvuelo IS 'SALIDAS/LLEGADAS';
+COMMENT ON COLUMN public.vuelos."informacionVuelo" IS 'SALIDAS/LLEGADAS';
 
 
 --
@@ -243,14 +243,14 @@ ALTER TABLE public."vuelos_idVuelo_seq" OWNER TO usuario;
 -- Name: vuelos_idVuelo_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: usuario
 --
 
-ALTER SEQUENCE public."vuelos_idVuelo_seq" OWNED BY public.vuelos.idvuelo;
+ALTER SEQUENCE public."vuelos_idVuelo_seq" OWNED BY public.vuelos."idVuelo";
 
 
 --
--- Name: companias idcompania; Type: DEFAULT; Schema: public; Owner: usuario
+-- Name: companias idCompania; Type: DEFAULT; Schema: public; Owner: usuario
 --
 
-ALTER TABLE ONLY public.companias ALTER COLUMN idcompania SET DEFAULT nextval('public."companias_idCompania_seq"'::regclass);
+ALTER TABLE ONLY public.companias ALTER COLUMN "idCompania" SET DEFAULT nextval('public."companias_idCompania_seq"'::regclass);
 
 
 --
@@ -261,10 +261,10 @@ ALTER TABLE ONLY public.companias ALTER COLUMN "nombreLogoCompania" SET DEFAULT 
 
 
 --
--- Name: destinos iddestino; Type: DEFAULT; Schema: public; Owner: usuario
+-- Name: destinos idDestino; Type: DEFAULT; Schema: public; Owner: usuario
 --
 
-ALTER TABLE ONLY public.destinos ALTER COLUMN iddestino SET DEFAULT nextval('public."destinos_idDestino_seq"'::regclass);
+ALTER TABLE ONLY public.destinos ALTER COLUMN "idDestino" SET DEFAULT nextval('public."destinos_idDestino_seq"'::regclass);
 
 
 --
@@ -275,17 +275,17 @@ ALTER TABLE ONLY public.estados ALTER COLUMN "idEstado" SET DEFAULT nextval('pub
 
 
 --
--- Name: puertas idpuerta; Type: DEFAULT; Schema: public; Owner: usuario
+-- Name: puertas idPuerta; Type: DEFAULT; Schema: public; Owner: usuario
 --
 
-ALTER TABLE ONLY public.puertas ALTER COLUMN idpuerta SET DEFAULT nextval('public."puertas_idPuerta_seq"'::regclass);
+ALTER TABLE ONLY public.puertas ALTER COLUMN "idPuerta" SET DEFAULT nextval('public."puertas_idPuerta_seq"'::regclass);
 
 
 --
--- Name: vuelos idvuelo; Type: DEFAULT; Schema: public; Owner: usuario
+-- Name: vuelos idVuelo; Type: DEFAULT; Schema: public; Owner: usuario
 --
 
-ALTER TABLE ONLY public.vuelos ALTER COLUMN idvuelo SET DEFAULT nextval('public."vuelos_idVuelo_seq"'::regclass);
+ALTER TABLE ONLY public.vuelos ALTER COLUMN "idVuelo" SET DEFAULT nextval('public."vuelos_idVuelo_seq"'::regclass);
 
 
 --
@@ -328,7 +328,6 @@ INSERT INTO public.puertas VALUES (1, 'B', 6);
 --
 
 INSERT INTO public.vuelos VALUES (1, 1, 1, 1, '13:00:00', 'SALIDA');
-INSERT INTO public.vuelos VALUES (2, 1, 1, 1, '15:00:00', 'HOLA');
 
 
 --
@@ -370,7 +369,7 @@ SELECT pg_catalog.setval('public."puertas_idPuerta_seq"', 1, true);
 -- Name: vuelos_idVuelo_seq; Type: SEQUENCE SET; Schema: public; Owner: usuario
 --
 
-SELECT pg_catalog.setval('public."vuelos_idVuelo_seq"', 2, true);
+SELECT pg_catalog.setval('public."vuelos_idVuelo_seq"', 1, true);
 
 
 --
@@ -378,7 +377,7 @@ SELECT pg_catalog.setval('public."vuelos_idVuelo_seq"', 2, true);
 --
 
 ALTER TABLE ONLY public.companias
-    ADD CONSTRAINT companias_pkey PRIMARY KEY (idcompania);
+    ADD CONSTRAINT companias_pkey PRIMARY KEY ("idCompania");
 
 
 --
@@ -386,7 +385,7 @@ ALTER TABLE ONLY public.companias
 --
 
 ALTER TABLE ONLY public.destinos
-    ADD CONSTRAINT destinos_pkey PRIMARY KEY (iddestino);
+    ADD CONSTRAINT destinos_pkey PRIMARY KEY ("idDestino");
 
 
 --
@@ -402,7 +401,7 @@ ALTER TABLE ONLY public.estados
 --
 
 ALTER TABLE ONLY public.puertas
-    ADD CONSTRAINT puertas_pkey PRIMARY KEY (idpuerta);
+    ADD CONSTRAINT puertas_pkey PRIMARY KEY ("idPuerta");
 
 
 --
@@ -410,7 +409,7 @@ ALTER TABLE ONLY public.puertas
 --
 
 ALTER TABLE ONLY public.vuelos
-    ADD CONSTRAINT vuelos_pkey PRIMARY KEY (idvuelo);
+    ADD CONSTRAINT vuelos_pkey PRIMARY KEY ("idVuelo");
 
 
 --
@@ -418,7 +417,7 @@ ALTER TABLE ONLY public.vuelos
 --
 
 ALTER TABLE ONLY public.estados_vuelos
-    ADD CONSTRAINT estados_vuelos_fk1 FOREIGN KEY ("idVuelo") REFERENCES public.vuelos(idvuelo) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT estados_vuelos_fk1 FOREIGN KEY ("idVuelo") REFERENCES public.vuelos("idVuelo") ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -434,7 +433,7 @@ ALTER TABLE ONLY public.estados_vuelos
 --
 
 ALTER TABLE ONLY public.vuelos
-    ADD CONSTRAINT vuelos_fk1 FOREIGN KEY (idcompania) REFERENCES public.companias(idcompania) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT vuelos_fk1 FOREIGN KEY ("idCompania") REFERENCES public.companias("idCompania") ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -442,7 +441,7 @@ ALTER TABLE ONLY public.vuelos
 --
 
 ALTER TABLE ONLY public.vuelos
-    ADD CONSTRAINT vuelos_fk2 FOREIGN KEY (iddestino) REFERENCES public.destinos(iddestino) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT vuelos_fk2 FOREIGN KEY ("idDestino") REFERENCES public.destinos("idDestino") ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
@@ -450,7 +449,7 @@ ALTER TABLE ONLY public.vuelos
 --
 
 ALTER TABLE ONLY public.vuelos
-    ADD CONSTRAINT vuelos_fk3 FOREIGN KEY (idpuerta) REFERENCES public.puertas(idpuerta) ON UPDATE CASCADE ON DELETE CASCADE;
+    ADD CONSTRAINT vuelos_fk3 FOREIGN KEY ("idPuerta") REFERENCES public.puertas("idPuerta") ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --
