@@ -44,6 +44,8 @@ QString ConexionBBDD::DevolverVuelos()
       QJsonDocument  json;
       QJsonArray     recordsArray;
 
+
+
       while(qu.next())
       {
          QJsonObject recordObject;
@@ -55,7 +57,11 @@ QString ConexionBBDD::DevolverVuelos()
       }
       json.setArray(recordsArray);
 
-      QString doc=json.toJson(QJsonDocument::Compact);
+      QString doc=json.toJson(QJsonDocument::Indented);
+
+
+
+
 
 
       return doc;
