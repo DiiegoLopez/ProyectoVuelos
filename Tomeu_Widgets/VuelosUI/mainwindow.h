@@ -18,6 +18,7 @@ public:
     explicit MainWindow(const QUrl &url, bool debug = false, QWidget *parent = nullptr);
     ~MainWindow();
     void run();
+    void ReadJson(int idVuelo, QString horaVuelo, QString infoVuelo, QString nombreComp, QString destino, int nPuerta);
 Q_SIGNALS:
     void closed();
     void onTextMessageReceived();
