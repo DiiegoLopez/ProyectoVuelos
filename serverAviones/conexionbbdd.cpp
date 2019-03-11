@@ -28,7 +28,7 @@ void ConexionBBDD::Conectar()
 
     } else {
         qDebug() << db.lastError();
-    } // end if
+    }
 }
 
 
