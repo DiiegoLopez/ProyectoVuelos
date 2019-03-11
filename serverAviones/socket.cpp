@@ -89,7 +89,7 @@ void socket::onNewConnection()
     pSocket->sendTextMessage(QString(vuelo));
 
 
-
+    connect(pSocket, &QWebSocket::textMessageReceived, this, &socket::processTextMessage);
     connect(pSocket, &QWebSocket::disconnected, this, &socket::socketDisconnected);
 
 
