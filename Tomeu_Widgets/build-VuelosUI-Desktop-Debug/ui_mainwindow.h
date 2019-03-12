@@ -15,7 +15,6 @@
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
-#include <QtWidgets/QListWidget>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QScrollArea>
 #include <QtWidgets/QTableWidget>
@@ -31,8 +30,8 @@ public:
     QLabel *label_2;
     QScrollArea *scrollArea;
     QWidget *scrollAreaWidgetContents;
-    QListWidget *listWidget;
     QTableWidget *myWidget;
+    QLabel *lblMEnsaje;
 
     void setupUi(QMainWindow *MainWindow)
     {
@@ -54,12 +53,6 @@ public:
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
         scrollAreaWidgetContents->setGeometry(QRect(0, 0, 489, 399));
-        listWidget = new QListWidget(scrollAreaWidgetContents);
-        new QListWidgetItem(listWidget);
-        new QListWidgetItem(listWidget);
-        new QListWidgetItem(listWidget);
-        listWidget->setObjectName(QStringLiteral("listWidget"));
-        listWidget->setGeometry(QRect(-10, 30, 501, 371));
         myWidget = new QTableWidget(scrollAreaWidgetContents);
         if (myWidget->columnCount() < 5)
             myWidget->setColumnCount(5);
@@ -74,10 +67,12 @@ public:
         QTableWidgetItem *__qtablewidgetitem4 = new QTableWidgetItem();
         myWidget->setHorizontalHeaderItem(4, __qtablewidgetitem4);
         myWidget->setObjectName(QStringLiteral("myWidget"));
-        myWidget->setGeometry(QRect(-10, 0, 501, 401));
+        myWidget->setGeometry(QRect(-10, 0, 511, 401));
         scrollArea->setWidget(scrollAreaWidgetContents);
-        myWidget->raise();
-        listWidget->raise();
+        lblMEnsaje = new QLabel(centralWidget);
+        lblMEnsaje->setObjectName(QStringLiteral("lblMEnsaje"));
+        lblMEnsaje->setEnabled(false);
+        lblMEnsaje->setGeometry(QRect(50, 510, 381, 21));
         MainWindow->setCentralWidget(centralWidget);
 
         retranslateUi(MainWindow);
@@ -90,17 +85,6 @@ public:
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", Q_NULLPTR));
         lblTitulo->setText(QApplication::translate("MainWindow", "LLEGADAS - SALIDAS", Q_NULLPTR));
         label_2->setText(QApplication::translate("MainWindow", "Pres\303\251ntese al embarque a la hora indicada por su compa\303\261\303\255a aerea.", Q_NULLPTR));
-
-        const bool __sortingEnabled = listWidget->isSortingEnabled();
-        listWidget->setSortingEnabled(false);
-        QListWidgetItem *___qlistwidgetitem = listWidget->item(0);
-        ___qlistwidgetitem->setText(QApplication::translate("MainWindow", "freferf", Q_NULLPTR));
-        QListWidgetItem *___qlistwidgetitem1 = listWidget->item(1);
-        ___qlistwidgetitem1->setText(QApplication::translate("MainWindow", "frefref", Q_NULLPTR));
-        QListWidgetItem *___qlistwidgetitem2 = listWidget->item(2);
-        ___qlistwidgetitem2->setText(QApplication::translate("MainWindow", "frefrefre", Q_NULLPTR));
-        listWidget->setSortingEnabled(__sortingEnabled);
-
         QTableWidgetItem *___qtablewidgetitem = myWidget->horizontalHeaderItem(0);
         ___qtablewidgetitem->setText(QApplication::translate("MainWindow", "Hora Llegada", Q_NULLPTR));
         QTableWidgetItem *___qtablewidgetitem1 = myWidget->horizontalHeaderItem(1);
@@ -111,6 +95,7 @@ public:
         ___qtablewidgetitem3->setText(QApplication::translate("MainWindow", "Puerta", Q_NULLPTR));
         QTableWidgetItem *___qtablewidgetitem4 = myWidget->horizontalHeaderItem(4);
         ___qtablewidgetitem4->setText(QApplication::translate("MainWindow", "Observaciones", Q_NULLPTR));
+        lblMEnsaje->setText(QApplication::translate("MainWindow", "TextLabel", Q_NULLPTR));
     } // retranslateUi
 
 };

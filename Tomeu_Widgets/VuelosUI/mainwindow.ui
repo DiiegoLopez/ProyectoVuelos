@@ -61,37 +61,12 @@
        <height>399</height>
       </rect>
      </property>
-     <widget class="QListWidget" name="listWidget">
-      <property name="geometry">
-       <rect>
-        <x>-10</x>
-        <y>30</y>
-        <width>501</width>
-        <height>371</height>
-       </rect>
-      </property>
-      <item>
-       <property name="text">
-        <string>freferf</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>frefref</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>frefrefre</string>
-       </property>
-      </item>
-     </widget>
      <widget class="QTableWidget" name="myWidget">
       <property name="geometry">
        <rect>
         <x>-10</x>
         <y>0</y>
-        <width>501</width>
+        <width>511</width>
         <height>401</height>
        </rect>
       </property>
@@ -121,9 +96,23 @@
        </property>
       </column>
      </widget>
-     <zorder>myWidget</zorder>
-     <zorder>listWidget</zorder>
     </widget>
+   </widget>
+   <widget class="QLabel" name="lblMEnsaje">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>510</y>
+      <width>381</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
+    </property>
    </widget>
   </widget>
  </widget>
