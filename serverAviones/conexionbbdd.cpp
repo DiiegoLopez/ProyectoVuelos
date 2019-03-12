@@ -37,35 +37,45 @@ QString ConexionBBDD::DevolverVuelos()
 {
     QSqlQuery qu;
     qu.setForwardOnly(true);
-    if (!qu.exec("SELECT idvuelo,nombrecompania,nombredestino,numeropuerta,horavuelo,informacionvuelo FROM public.vuelos join companias using (idcompania)join puertas using (idpuerta)join destinos using(iddestino);"))
-
-                 return QString();
-
-      QJsonDocument  json;
-      QJsonArray     recordsArray;
-
-
-
-      while(qu.next())
-      {
-         QJsonObject recordObject;
-            for(int x=0; x < qu.record().count(); x++)
-            {
-            recordObject.insert( qu.record().fieldName(x),QJsonValue::fromVariant(qu.value(x)) );
-            }
-         recordsArray.push_back(recordObject);
-      }
-      json.setArray(recordsArray);
-
-      QString doc=json.toJson(QJsonDocument::Indented);
 
 
 
 
 
 
-      return doc;
-    }
+
+
+
+          bool firstline = true;
+          qu.setForwardOnly(true);
+          if(qu.exec("SELECT idvuelo,nombrecompania,nombredestino,numeropuerta,horavuelo,informacionvuelo FROM public.vuelos join companias using (idcompania)join puertas using (idpuerta)join destinos using(iddestino);"))
+          {
+              QString answer = "{\"vuelos\":[";
+              while(qu.next())
+                  {
+                      if(firstline){firstline = false;}else {answer += ",";}
+
+                      answer += "{";
+                      for(int x=0; x < qu.record().count(); ++x)
+                      {
+                          if(x != 0){answer += ",";}
+                          answer += "\""+qu.record().fieldName(x) +"\":\""+ qu.value(x).toString()+"\"";
+                      }
+                      answer += "}";
+                  }
+              answer += "]}";
+              return answer;
+          }
+
+}
+
+
+
+
+
+
+
+
 
 
 
