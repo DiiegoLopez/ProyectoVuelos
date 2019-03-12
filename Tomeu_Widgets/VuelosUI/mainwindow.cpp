@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include <QMessageBox>
 #include <QtWebSockets>
+#include <QJsonParseError>
 
 MainWindow::MainWindow(const QUrl &url, bool debug, QWidget *parent) :
     QMainWindow(parent),
@@ -42,58 +43,42 @@ void MainWindow::run()
 void MainWindow::ReadJson()
 {
 
-    int idVuelo;
-    QString horaVuelo;
-    QString infoVuelo;
-    QString nombreComp;
-    QString destino;
-    int nPuerta;
+        QFile file("/home/tom/Documentos/ProyectoVuelos/Tomeu_Widgets/VuelosUI/json/vuelo.json");
+        bool abre = file.open(QIODevice::ReadOnly | QIODevice::Text);
+        QByteArray jsonData = file.readAll();
+        file.close();
 
-    QString path = "/home/tom/Documentos/ProyectoVuelos/Tomeu_Widgets/VuelosUI/json/vuelo.json";
-       QFile vueloFileR(path);
-       if(!vueloFileR.open(QIODevice::ReadOnly)){
-           qDebug()<<"Failed to open "<<"path";
+        if (abre) qDebug() << "abierto";
 
-       }
+        QJsonParseError *error = new QJsonParseError;
+        QJsonDocument document(QJsonDocument::fromJson(jsonData, error));
 
-       QTextStream file_text(&vueloFileR);
-       QString stringJsonR;
-       stringJsonR = file_text.readAll();
-       vueloFileR.close();
-       QByteArray bytesJson = stringJsonR.toLocal8Bit();
-       auto vueloDocR=QJsonDocument::fromJson(bytesJson);
+        qDebug() << error->errorString();
+        qDebug() << "DATOS: " << document.toJson().constData();
 
-       if(vueloDocR.isNull()){
-           qDebug()<<"Failed to create JSON doc.";
-           QMessageBox::information(this, tr("Atención"), tr("Failed to create JSON doc."));
-       }
-       if(!vueloDocR.isObject()){
-           qDebug()<<"JSON is not an object.";
-           QMessageBox::information(this, tr("Atención"), tr("JSON is not an object."));
-       }
+        QJsonObject object = document.object();
 
-       QJsonObject vueloJsonR=vueloDocR.object();
+        QJsonValue value = object.value("vuelos");
+        QJsonArray array = value.toArray();
 
-       if(vueloJsonR.isEmpty()){
-           qDebug()<<"JSON object is empty.";
-           QMessageBox::information(this, tr("Atención"), tr("JSON object is empty."));
-       }
 
-       QVariantMap mapJson = vueloJsonR.toVariantMap();
+        foreach (const QJsonValue & v, array){
+            QString ars[] = {"idvuelo", "horavuelo", "informacionvuelo", "nombredestino", "nombrecompania", "numeropuerta"};
 
-       idVuelo = mapJson["idvuelo"].toInt();
-       horaVuelo = mapJson["horaVuelo"].toString();
-       infoVuelo = mapJson["informacionvuelo"].toString();
-       nombreComp = mapJson["nombrecompania"].toString();
-       destino = mapJson["nombredestino"].toString();
-       nPuerta = mapJson["numeropuerta"].toInt();
+            // Meter
 
-       this->ui->lblMEnsaje->setText(infoVuelo);
+            QTableWidgetItem* item = new QTableWidgetItem;
+            QString valor = v.toObject().value(ars[0]).toString();
+            item->setText(valor);
+            this->ui->tabla->setItem(0, 0, item);
+
+        }
+
 }
 
 void MainWindow::recibirMensaje(QString msg){
     QWebSocket *pClient = qobject_cast<QWebSocket *> (sender());
-    /*escribirVuelo(msg);*/
+    escribirVuelo(msg);
 }
 
 void MainWindow::escribirVuelo(QString vuelo){

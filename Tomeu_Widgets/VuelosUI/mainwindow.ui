@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>530</width>
+    <width>666</width>
     <height>546</height>
    </rect>
   </property>
@@ -45,7 +45,7 @@
      <rect>
       <x>10</x>
       <y>40</y>
-      <width>491</width>
+      <width>571</width>
       <height>401</height>
      </rect>
     </property>
@@ -57,42 +57,92 @@
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>489</width>
+       <width>569</width>
        <height>399</height>
       </rect>
      </property>
-     <widget class="QTableWidget" name="myWidget">
+     <widget class="QTableWidget" name="tabla">
       <property name="geometry">
        <rect>
         <x>-10</x>
         <y>0</y>
-        <width>511</width>
+        <width>611</width>
         <height>401</height>
        </rect>
       </property>
+      <row>
+       <property name="text">
+        <string/>
+       </property>
+      </row>
+      <row>
+       <property name="text">
+        <string/>
+       </property>
+      </row>
+      <row>
+       <property name="text">
+        <string/>
+       </property>
+      </row>
+      <row>
+       <property name="text">
+        <string/>
+       </property>
+      </row>
+      <row>
+       <property name="text">
+        <string/>
+       </property>
+      </row>
+      <row>
+       <property name="text">
+        <string/>
+       </property>
+      </row>
+      <row>
+       <property name="text">
+        <string/>
+       </property>
+      </row>
+      <row>
+       <property name="text">
+        <string/>
+       </property>
+      </row>
+      <row>
+       <property name="text">
+        <string/>
+       </property>
+      </row>
+      <row>
+       <property name="text">
+        <string/>
+       </property>
+      </row>
       <column>
        <property name="text">
-        <string>Hora Llegada</string>
+        <string>ID</string>
        </property>
       </column>
       <column>
        <property name="text">
-        <string>Comapñia</string>
+        <string>HORA</string>
        </property>
       </column>
       <column>
        <property name="text">
-        <string>Destino</string>
+        <string>INFORMACION</string>
        </property>
       </column>
       <column>
        <property name="text">
-        <string>Puerta</string>
+        <string>COMPAÑIA</string>
        </property>
       </column>
       <column>
        <property name="text">
-        <string>Observaciones</string>
+        <string>PUERTA</string>
        </property>
       </column>
      </widget>

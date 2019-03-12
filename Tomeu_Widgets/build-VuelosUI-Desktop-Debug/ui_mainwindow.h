@@ -30,14 +30,14 @@ public:
     QLabel *label_2;
     QScrollArea *scrollArea;
     QWidget *scrollAreaWidgetContents;
-    QTableWidget *myWidget;
+    QTableWidget *tabla;
     QLabel *lblMEnsaje;
 
     void setupUi(QMainWindow *MainWindow)
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(530, 546);
+        MainWindow->resize(666, 546);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         lblTitulo = new QLabel(centralWidget);
@@ -48,26 +48,48 @@ public:
         label_2->setGeometry(QRect(10, 460, 471, 21));
         scrollArea = new QScrollArea(centralWidget);
         scrollArea->setObjectName(QStringLiteral("scrollArea"));
-        scrollArea->setGeometry(QRect(10, 40, 491, 401));
+        scrollArea->setGeometry(QRect(10, 40, 571, 401));
         scrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 489, 399));
-        myWidget = new QTableWidget(scrollAreaWidgetContents);
-        if (myWidget->columnCount() < 5)
-            myWidget->setColumnCount(5);
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 569, 399));
+        tabla = new QTableWidget(scrollAreaWidgetContents);
+        if (tabla->columnCount() < 5)
+            tabla->setColumnCount(5);
         QTableWidgetItem *__qtablewidgetitem = new QTableWidgetItem();
-        myWidget->setHorizontalHeaderItem(0, __qtablewidgetitem);
+        tabla->setHorizontalHeaderItem(0, __qtablewidgetitem);
         QTableWidgetItem *__qtablewidgetitem1 = new QTableWidgetItem();
-        myWidget->setHorizontalHeaderItem(1, __qtablewidgetitem1);
+        tabla->setHorizontalHeaderItem(1, __qtablewidgetitem1);
         QTableWidgetItem *__qtablewidgetitem2 = new QTableWidgetItem();
-        myWidget->setHorizontalHeaderItem(2, __qtablewidgetitem2);
+        tabla->setHorizontalHeaderItem(2, __qtablewidgetitem2);
         QTableWidgetItem *__qtablewidgetitem3 = new QTableWidgetItem();
-        myWidget->setHorizontalHeaderItem(3, __qtablewidgetitem3);
+        tabla->setHorizontalHeaderItem(3, __qtablewidgetitem3);
         QTableWidgetItem *__qtablewidgetitem4 = new QTableWidgetItem();
-        myWidget->setHorizontalHeaderItem(4, __qtablewidgetitem4);
-        myWidget->setObjectName(QStringLiteral("myWidget"));
-        myWidget->setGeometry(QRect(-10, 0, 511, 401));
+        tabla->setHorizontalHeaderItem(4, __qtablewidgetitem4);
+        if (tabla->rowCount() < 10)
+            tabla->setRowCount(10);
+        QTableWidgetItem *__qtablewidgetitem5 = new QTableWidgetItem();
+        tabla->setVerticalHeaderItem(0, __qtablewidgetitem5);
+        QTableWidgetItem *__qtablewidgetitem6 = new QTableWidgetItem();
+        tabla->setVerticalHeaderItem(1, __qtablewidgetitem6);
+        QTableWidgetItem *__qtablewidgetitem7 = new QTableWidgetItem();
+        tabla->setVerticalHeaderItem(2, __qtablewidgetitem7);
+        QTableWidgetItem *__qtablewidgetitem8 = new QTableWidgetItem();
+        tabla->setVerticalHeaderItem(3, __qtablewidgetitem8);
+        QTableWidgetItem *__qtablewidgetitem9 = new QTableWidgetItem();
+        tabla->setVerticalHeaderItem(4, __qtablewidgetitem9);
+        QTableWidgetItem *__qtablewidgetitem10 = new QTableWidgetItem();
+        tabla->setVerticalHeaderItem(5, __qtablewidgetitem10);
+        QTableWidgetItem *__qtablewidgetitem11 = new QTableWidgetItem();
+        tabla->setVerticalHeaderItem(6, __qtablewidgetitem11);
+        QTableWidgetItem *__qtablewidgetitem12 = new QTableWidgetItem();
+        tabla->setVerticalHeaderItem(7, __qtablewidgetitem12);
+        QTableWidgetItem *__qtablewidgetitem13 = new QTableWidgetItem();
+        tabla->setVerticalHeaderItem(8, __qtablewidgetitem13);
+        QTableWidgetItem *__qtablewidgetitem14 = new QTableWidgetItem();
+        tabla->setVerticalHeaderItem(9, __qtablewidgetitem14);
+        tabla->setObjectName(QStringLiteral("tabla"));
+        tabla->setGeometry(QRect(-10, 0, 611, 401));
         scrollArea->setWidget(scrollAreaWidgetContents);
         lblMEnsaje = new QLabel(centralWidget);
         lblMEnsaje->setObjectName(QStringLiteral("lblMEnsaje"));
@@ -85,16 +107,16 @@ public:
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", Q_NULLPTR));
         lblTitulo->setText(QApplication::translate("MainWindow", "LLEGADAS - SALIDAS", Q_NULLPTR));
         label_2->setText(QApplication::translate("MainWindow", "Pres\303\251ntese al embarque a la hora indicada por su compa\303\261\303\255a aerea.", Q_NULLPTR));
-        QTableWidgetItem *___qtablewidgetitem = myWidget->horizontalHeaderItem(0);
-        ___qtablewidgetitem->setText(QApplication::translate("MainWindow", "Hora Llegada", Q_NULLPTR));
-        QTableWidgetItem *___qtablewidgetitem1 = myWidget->horizontalHeaderItem(1);
-        ___qtablewidgetitem1->setText(QApplication::translate("MainWindow", "Comap\303\261ia", Q_NULLPTR));
-        QTableWidgetItem *___qtablewidgetitem2 = myWidget->horizontalHeaderItem(2);
-        ___qtablewidgetitem2->setText(QApplication::translate("MainWindow", "Destino", Q_NULLPTR));
-        QTableWidgetItem *___qtablewidgetitem3 = myWidget->horizontalHeaderItem(3);
-        ___qtablewidgetitem3->setText(QApplication::translate("MainWindow", "Puerta", Q_NULLPTR));
-        QTableWidgetItem *___qtablewidgetitem4 = myWidget->horizontalHeaderItem(4);
-        ___qtablewidgetitem4->setText(QApplication::translate("MainWindow", "Observaciones", Q_NULLPTR));
+        QTableWidgetItem *___qtablewidgetitem = tabla->horizontalHeaderItem(0);
+        ___qtablewidgetitem->setText(QApplication::translate("MainWindow", "ID", Q_NULLPTR));
+        QTableWidgetItem *___qtablewidgetitem1 = tabla->horizontalHeaderItem(1);
+        ___qtablewidgetitem1->setText(QApplication::translate("MainWindow", "HORA", Q_NULLPTR));
+        QTableWidgetItem *___qtablewidgetitem2 = tabla->horizontalHeaderItem(2);
+        ___qtablewidgetitem2->setText(QApplication::translate("MainWindow", "INFORMACION", Q_NULLPTR));
+        QTableWidgetItem *___qtablewidgetitem3 = tabla->horizontalHeaderItem(3);
+        ___qtablewidgetitem3->setText(QApplication::translate("MainWindow", "COMPA\303\221IA", Q_NULLPTR));
+        QTableWidgetItem *___qtablewidgetitem4 = tabla->horizontalHeaderItem(4);
+        ___qtablewidgetitem4->setText(QApplication::translate("MainWindow", "PUERTA", Q_NULLPTR));
         lblMEnsaje->setText(QApplication::translate("MainWindow", "TextLabel", Q_NULLPTR));
     } // retranslateUi
 
