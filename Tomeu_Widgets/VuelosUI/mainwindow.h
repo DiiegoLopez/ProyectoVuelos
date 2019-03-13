@@ -21,6 +21,8 @@ public:
     void ReadJson();
     void recibirMensaje(QString msg);
     void escribirVuelo(QString vuelo);
+
+
 Q_SIGNALS:
     void closed();
     void onTextMessageReceived();

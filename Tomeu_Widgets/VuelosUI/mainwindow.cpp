@@ -3,6 +3,7 @@
 #include <QMessageBox>
 #include <QtWebSockets>
 #include <QJsonParseError>
+#include <QVBoxLayout>
 
 MainWindow::MainWindow(const QUrl &url, bool debug, QWidget *parent) :
     QMainWindow(parent),
@@ -12,7 +13,7 @@ MainWindow::MainWindow(const QUrl &url, bool debug, QWidget *parent) :
     ui->setupUi(this);
     QTimer::singleShot(0,this,SLOT(run()));
     run();
-    //onConnected();
+    onConnected();
 
 }
 
@@ -43,7 +44,7 @@ void MainWindow::run()
 void MainWindow::ReadJson()
 {
 
-        QFile file("/home/tom/Documentos/ProyectoVuelos/Tomeu_Widgets/VuelosUI/json/vuelo.json");
+        QFile file("/home/diego/ProyectoAviones/Tomeu_Widgets/VuelosUI/json/vuelo.json");
         bool abre = file.open(QIODevice::ReadOnly | QIODevice::Text);
         QByteArray jsonData = file.readAll();
         file.close();
@@ -62,19 +63,35 @@ void MainWindow::ReadJson()
         QJsonArray array = value.toArray();
 
 
-        foreach (const QJsonValue & v, array){
-            QString ars[] = {"idvuelo", "horavuelo", "informacionvuelo", "nombredestino", "nombrecompania", "numeropuerta"};
+
+            for (int i = 0; i < array.size(); ++i) {
+               QJsonValue v=array[i];
+
+
+            QString ars[] = {"idvuelo", "nombrecompania", "nombredestino","numeropuerta" ,"horavuelo", "informacionvuelo"};
 
             // Meter
 
-            QTableWidgetItem* item = new QTableWidgetItem;
-            QString valor = v.toObject().value(ars[0]).toString();
+
+
+
+                for(int y=0;y<6;y++){
+            QString valor = v.toObject().value(ars[y]).toString();
+            qDebug()<< valor;
+             QTableWidgetItem *item = new QTableWidgetItem;
+
             item->setText(valor);
-            this->ui->tabla->setItem(0, 0, item);
+            ui->tabla->setItem(i, y,item);
+            }
+
+            }
 
         }
 
-}
+
+
+
+
 
 void MainWindow::recibirMensaje(QString msg){
     QWebSocket *pClient = qobject_cast<QWebSocket *> (sender());
@@ -82,7 +99,7 @@ void MainWindow::recibirMensaje(QString msg){
 }
 
 void MainWindow::escribirVuelo(QString vuelo){
-    QFile file("/home/tom/Documentos/ProyectoVuelos/Tomeu_Widgets/VuelosUI/json/vuelo.json");
+    QFile file("/home/diego/ProyectoAviones/Tomeu_Widgets/VuelosUI/json/vuelo.json");
     file.open(QIODevice::WriteOnly | QIODevice::Text);
 
     QTextStream out(&file);

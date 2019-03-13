@@ -45,7 +45,7 @@
      <rect>
       <x>10</x>
       <y>40</y>
-      <width>571</width>
+      <width>611</width>
       <height>401</height>
      </rect>
     </property>
@@ -57,8 +57,8 @@
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>569</width>
-       <height>399</height>
+       <width>607</width>
+       <height>397</height>
       </rect>
      </property>
      <widget class="QTableWidget" name="tabla">
@@ -66,7 +66,7 @@
        <rect>
         <x>-10</x>
         <y>0</y>
-        <width>611</width>
+        <width>691</width>
         <height>401</height>
        </rect>
       </property>
@@ -127,22 +127,27 @@
       </column>
       <column>
        <property name="text">
+        <string>COMPAÑIA</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>DESTINO</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>PUERTA</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
         <string>HORA</string>
        </property>
       </column>
       <column>
        <property name="text">
         <string>INFORMACION</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>COMPAÑIA</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>PUERTA</string>
        </property>
       </column>
      </widget>
