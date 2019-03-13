@@ -44,7 +44,7 @@ void MainWindow::run()
 void MainWindow::ReadJson()
 {
 
-        QFile file("/home/diego/ProyectoAviones/Tomeu_Widgets/VuelosUI/json/vuelo.json");
+        QFile file("vuelo.json");
         bool abre = file.open(QIODevice::ReadOnly | QIODevice::Text);
         QByteArray jsonData = file.readAll();
         file.close();
@@ -99,7 +99,7 @@ void MainWindow::recibirMensaje(QString msg){
 }
 
 void MainWindow::escribirVuelo(QString vuelo){
-    QFile file("/home/diego/ProyectoAviones/Tomeu_Widgets/VuelosUI/json/vuelo.json");
+    QFile file("vuelo.json");
     file.open(QIODevice::WriteOnly | QIODevice::Text);
 
     QTextStream out(&file);
